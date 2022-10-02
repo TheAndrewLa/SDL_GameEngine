@@ -3,6 +3,8 @@
 
 #include "Engine/Window.h"
 #include "Engine/Sprite.h"
+#include "Engine/Timer.h"
+#include "Engine/Sounds.h"
 
 bool running;
 void PollEvents(Engine::Window& window) {
@@ -16,10 +18,28 @@ void PollEvents(Engine::Window& window) {
     }
 }
 
-int main(int argc, char* args[]) {
-    SDL_Init(SDL_INIT_EVERYTHING);
-    IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
+void InitSDLSystems() {
+    int res0 = SDL_Init(SDL_INIT_EVERYTHING);
+    int res1 = IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
+    int res2 = TTF_Init();
+    int res3 = Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS,
+                             16384);
 
+    if (res0 < 0) exit(1);
+    if (!(res1 & (IMG_INIT_PNG | IMG_INIT_JPG))) exit(1);
+    if (res2 < 0) exit(1);
+    if (res3 < 0) exit(1);
+}
+
+void CloseSDLSystems() {
+    Mix_CloseAudio();
+    TTF_Quit();
+    IMG_Quit();
+    SDL_Quit();
+}
+
+int main(int argc, char* args[]) {
+    InitSDLSystems();
     Engine::Window window(1280, 720, "Window");
     Engine::Graphics graphics(window);
 
@@ -35,6 +55,6 @@ int main(int argc, char* args[]) {
         SDL_Delay(10);
     }
 
-    SDL_Quit();
+    CloseSDLSystems();
     return 0;
 }

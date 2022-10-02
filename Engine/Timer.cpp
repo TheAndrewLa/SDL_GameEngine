@@ -30,6 +30,10 @@ namespace Engine {
         return (SDL_GetTicks64() - this->m_PausedTicks);
     }
 
+    U64 Timer::GetTicks() const {
+        return (SDL_GetTicks64() - this->m_Ticks);
+    }
+
     U64 Timer::TicksToMilliseconds(U64 ticks) {
         return ticks;
     }

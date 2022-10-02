@@ -8,7 +8,14 @@ namespace Engine {
     }
 
     Sprite::~Sprite() {
-        SDL_DestroyTexture(this->m_Texture);
+        if (this->m_Texture != nullptr) SDL_DestroyTexture(this->m_Texture);
+    }
+
+    void Sprite::LoadTexture(const Graphics& graphics, const char* path) {
+        if (this->m_Texture != nullptr) SDL_DestroyTexture(this->m_Texture);
+
+        this->m_Texture = IMG_LoadTexture(graphics.SDLRenderer(), path);
+        SDL_QueryTexture(this->m_Texture, nullptr, nullptr, &this->m_Width, &this->m_Height);
     }
 
     void Sprite::BlitSprite(const Graphics& graphics, SDL_FRect rect, F32 angle) {
@@ -27,5 +34,9 @@ namespace Engine {
         SDL_SetTextureColorMod(this->m_Texture, black, black, black);
         SDL_RenderCopyExF(graphics.SDLRenderer(), this->m_Texture, &rect1, &rect2,
                           (F64) angle, nullptr, SDL_FLIP_NONE);
+    }
+
+    bool Sprite::IsValid() const {
+        return (this->m_Texture != nullptr);
     }
 }

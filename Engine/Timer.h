@@ -20,6 +20,8 @@ namespace Engine {
         U64 Pause();
         U64 Unpause();
 
+        [[nodiscard]] U64 GetTicks() const;
+
         static U64 TicksToMilliseconds(U64);
         static F32 TicksToSeconds(U64);
         static F32 TicksToMinutes(U64);
