@@ -2,7 +2,7 @@
 #pragma once
 
 #include "SDL.h"
-#include "_Definitions.h"
+#include "Utils.h"
 
 namespace Engine {
     class Timer {

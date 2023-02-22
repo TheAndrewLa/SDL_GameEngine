@@ -29,7 +29,7 @@ link_directories(${SDL_TTF_LIB_PATH})
 link_directories(${SDL_MIXER_LIB_PATH})
 
 set(ENGINE_FILES
-        Engine/_Definitions.h
+        Engine/Utils.h
         Engine/Window.cpp Engine/Window.h
         Engine/Sprite.cpp Engine/Sprite.h
         Engine/Timer.cpp Engine/Timer.h

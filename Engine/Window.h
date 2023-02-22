@@ -2,7 +2,7 @@
 #pragma once
 
 #include "SDL.h"
-#include "_Definitions.h"
+#include "Utils.h"
 #include <string>
 
 #define DefaultGraphicsMemory (1024)

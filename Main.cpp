@@ -41,6 +41,8 @@ void CloseSDLSystems() {
 int main(int argc, char* args[]) {
     InitSDLSystems();
     Engine::Window window(1280, 720, "Window");
+    window.MakeFullscreen();
+
     Engine::Graphics graphics(window);
 
     running = true;

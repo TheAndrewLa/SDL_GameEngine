@@ -2,7 +2,7 @@
 #pragma once
 
 #include "SDL_mixer.h"
-#include "_Definitions.h"
+#include "Utils.h"
 
 namespace Engine {
     class Music {

@@ -19,19 +19,12 @@ namespace Engine {
     }
 
     void Sprite::BlitSprite(const Graphics& graphics, SDL_FRect rect, F32 angle) {
-        SDL_Rect rect1 = {0, 0, this->m_Width, this->m_Height};
-        SDL_FRect rect2 = rect;
-
-        SDL_RenderCopyExF(graphics.SDLRenderer(), this->m_Texture, &rect1, &rect2,
-                          (F64) angle, nullptr, SDL_FLIP_NONE);
-    }
-
-    void Sprite::BlitSprite(const Graphics& graphics, SDL_FRect rect, U8 shading, F32 angle) {
-        auto black = 255 - shading;
+        auto black = 255 - this->m_SpriteShading;
         SDL_Rect rect1 = {0, 0, this->m_Width, this->m_Height};
         SDL_FRect rect2 = rect;
 
         SDL_SetTextureColorMod(this->m_Texture, black, black, black);
+        SDL_SetTextureAlphaMod(this->m_Texture, this->m_SpriteOpacity);
         SDL_RenderCopyExF(graphics.SDLRenderer(), this->m_Texture, &rect1, &rect2,
                           (F64) angle, nullptr, SDL_FLIP_NONE);
     }
