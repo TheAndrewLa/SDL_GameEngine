@@ -1,4 +1,4 @@
-# SDL_GameEngine
+## Game Engine with SDL library
 This is my one night project - a prototype of game engine which was written with SDL libraries. 
 
 I used SDL2 for main functions, SDL_Mixer for sound output and SDL_TTF for fonts.
