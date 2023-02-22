@@ -11,10 +11,6 @@ void PollEvents(Engine::Window& window) {
     SDL_Event event;
     while (SDL_PollEvent(&event) != 0) {
         if (event.type == SDL_QUIT) running = false;
-        if (event.type == SDL_KEYUP && event.key.keysym.scancode == SDL_SCANCODE_F11) {
-            if (window.State() == Engine::WindowState::Fullscreen) window.MakeWindowed();
-            else if (window.State() == Engine::WindowState::Windowed) window.MakeFullscreen();
-        }
     }
 }
 
